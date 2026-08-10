@@ -1,50 +1,141 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-           <head>
-             <meta charset="UTF-8">
-  <meta name="viewport" 
-               content="width=device-width, initial-scale=1.0">
-   <title>Gotinhamat</title>
-   <style>
-    header{
-       background: color #daffc1 ;
-       color:#0A3AC0;
-       text-align: center;
-       max-width: 800px;
-       margin: 0 auto;
-      }
-        main{
-          background-color:#0A3AC0 ;
-          color: #daffc1 ;
-          max-width: 150px;
-       margin: 0 auto;
-       padding: 80px;
-       border:5px solid #000; ;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo d'Água - Consumo Consciente</title>
+   
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
         }
-   </style>
-img {
-width: 10px;
-height: 10px;
-}
 
-</style>
- </head>
+        /* Cabeçalho */
+        header {
+            background-color: #0A315B;
+            color: #ECD356;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid #ECD356;
+        }
+
+        header h1 { margin: 0; font-size: 2.5em; }
+        header p { margin: 10px 0 0; font-size: 1.1em; opacity: 0.9; }
+
+        /* Conteúdo Principal */
+        main {
+            padding: 30px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            margin-top: -20px;
+        }
+
+        /* Container da Imagem */
+        .imagem-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .imagem-gotinha {
+            max-width: 280px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            border: 4px solid #fff;
+        }
+
+        /* Seções e Cards */
+        section { margin-bottom: 40px; }
+        h2 { color: #0A315B; border-bottom: 2px solid #ECD356; display: inline-block; padding-bottom: 5px; margin-bottom: 20px; }
+
+        .card {
+            background-color: #f4f7f6;
+            border-left: 5px solid #0A315B;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateX(5px); }
+        .card h3 { margin-top: 0; color: #0A315B; font-size: 1.2em; }
+
+        /* Rodapé */
+        footer {
+            background-color: #0A315B;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 50px;
+            border-top: 3px solid #ECD356;
+        }
+        footer p { margin: 5px 0; }
+    </style>
+</head>
 <body>
-  <header>
-    <h1>De Gotinha em Gotinha!</h1>
-    <p>Oiee, seja bem vindo (a) ao nosso site.Aqui calculamos a matemática da água. Já parou para pensar o quanto você gasta para por exemplo... lavar louça, escovar os dentes até mesmo lavar seu cabelo?</p>
-     <img src="Gemini_Generated_Image_hlruhlhlruhlhlru.png" alt="Uma gotinha matemática de óculos fazendo cálculos.">
-     <main>
-      <h2>A água é um verdadeiro combustível para o nosso corpo! Ela transporta nutrientes</h2>
-       <h2>a temperatura e mantém o nosso cérebro afiado para encarar a rotina de estudos </h2>
-      <p>Por:Karina Santos</p> 
-      <p>Ficar desidratado deixa o corpo lento, sem energia e sem foco. Por isso, garantir a quantidade certa todos os dias é o segredo para manter o rendimento no máximo.Para descobrir o seu consumo ideal, a regra geral é multiplicar 35 ml pelo seu peso em quilos:
-      
-      Água (litros)= 
-      1000
-      Seu Peso (kg)×35
-      ​
-      !Exemplo Prático: > Se você pesa 60 kg:
-      
-      60×35=2100 ml→2,1 Litros por dia!</p>
-      
+
+    <header>
+        <h1>Cálculo d'Água</h1>
+        <p>Aprenda a calcular e otimizar seu consumo diário de forma simples e sustentável.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Sobre o Projeto</h2>
+            <p>A água é um recurso essencial, mas muitas vezes não percebemos a quantidade que desperdiçamos no dia a dia. O projeto <strong>Cálculo d'Água</strong> foi desenvolvido para ajudar famílias e escolas a monitorarem seus gastos hídricos, promovendo a conscientização e a economia financeira através de ferramentas práticas de medição.</p>
+
+            <div class="imagem-container">
+                <!-- VVV IMPORTANTE: APAGUE 'image.png' ABAIXO E COLE O NOME COMPLICADO QUE VOCÊ COPIOU VVV -->
+                <img src="image.png" alt="Gotinha de água fofa usando óculos e resolvendo cálculos matemáticos complexos sobre o consumo de água" class="imagem-gotinha">
+                <!-- ^^^ IMPORTANTE: MANTENHA AS ASPAS ("...") AO REDOR DO NOME ^^^ -->
+            </div>
+
+        </section>
+
+        <section>
+            <h2>Perguntas Frequentes (FAQ)</h2>
+           
+            <div class="card">
+                <h3>1. Como é feito o cálculo do consumo diário?</h3>
+                <p>O cálculo leva em consideração a média de tempo gasta em atividades rotineiras multiplieda pelo fluxo médio de água das torneiras e chuveiros padrão.</p>
+            </div>
+
+            <div class="card">
+                <h3>2. Qual é a média de consumo recomendada por pessoa?</h3>
+                <p>Segundo a Organização Mundial da Saúde (OMS), 110 litros de água por dia são suficientes para atender às necessidades básicas de consumo e higiene de uma pessoa.</p>
+            </div>
+
+            <div class="card">
+                <h3>3. Como posso reduzir meu consumo sem mudar drasticamente a rotina?</h3>
+                <p>Pequenas atitudes geram grandes impactos: fechar a torneira ao escovar os dentes, reduzir o tempo de banho em 2 minutos e reutilizar a água da máquina de lavar para limpar áreas externas.</p>
+            </div>
+
+            <div class="card">
+                <h3>4. Como este site ajuda na prática?</h3>
+                <p>Nossa plataforma oferece calculatórias simplificadas e guias educativos para você identificar onde está o maior gasto de água.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Quem Somos?</h2>
+            <p>Somos um grupo de estudantes dedicados a criar soluções ecológicas e acessíveis para a nossa comunidade.</p>
+            <p><strong>Desenvolvido por:</strong> Kari Santos</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Todos os direitos reservados a @Kari-Santos66</p>
+        <p>&copy; 2026 - Projeto Estudantil de Conscientização Hídrica</p>
+    </footer>
+
+</body>
+</html>
