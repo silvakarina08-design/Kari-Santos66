@@ -6,7 +6,6 @@
     <title>Cálculo d'Água - Consumo Consciente</title>
     
     <style>
-        /* Reset e Estilos Gerais */
         * {
             box-sizing: border-box;
         }
@@ -20,7 +19,7 @@
             background-color: #f4f7f6;
         }
 
-        /* Barra de Navegação e Seletor de Idiomas */
+        /* Barra Superior */
         .top-bar {
             background-color: #06203d;
             padding: 10px 20px;
@@ -58,7 +57,7 @@
             color: #0A315B;
         }
 
-        /* Cabeçalho Principal */
+        /* Cabeçalho */
         header {
             background-color: #0A315B;
             color: #ECD356;
@@ -90,7 +89,6 @@
             border-radius: 12px;
         }
 
-        /* Container de Imagem */
         .imagem-container {
             text-align: center;
             margin: 30px 0;
@@ -105,7 +103,6 @@
             border: 4px solid #fff;
         }
 
-        /* Seções e Cards */
         section { 
             margin-bottom: 45px; 
             scroll-margin-top: 20px;
@@ -141,28 +138,38 @@
             font-size: 1.2em; 
         }
 
-        /* Botão de Curtir */
-        .curtir-container {
-            text-align: center;
+        /* Botões de Feedback (Like / Dislike) */
+        .feedback-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             margin: 30px 0 10px 0;
         }
 
-        .btn-curtir {
-            background-color: #ECD356;
-            color: #0A315B;
+        .btn-feedback {
             border: none;
-            padding: 12px 28px;
-            font-size: 1.05em;
+            padding: 12px 24px;
+            font-size: 1em;
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.2s, background-color 0.2s;
+            transition: transform 0.2s, opacity 0.2s;
         }
 
-        .btn-curtir:hover {
+        .btn-feedback:hover {
             transform: scale(1.05);
-            background-color: #e0c438;
+            opacity: 0.9;
+        }
+
+        .btn-like {
+            background-color: #27ae60;
+            color: #fff;
+        }
+
+        .btn-dislike {
+            background-color: #e74c3c;
+            color: #fff;
         }
 
         /* Rodapé */
@@ -180,18 +187,17 @@
 </head>
 <body>
 
-    <!-- Barra Superior com Navegação e Idiomas -->
+    <!-- Barra Superior -->
     <div class="top-bar">
-        <nav aria-label="Navegação Principal">
+        <nav>
             <a href="#sobre" id="nav-sobre">Sobre</a>
             <a href="#faq" id="nav-faq">FAQ</a>
             <a href="#equipe" id="nav-equipe">Quem Somos</a>
         </nav>
         
-        <!-- Seletor de Idioma -->
         <div class="lang-switch">
-            <button onclick="mudarIdioma('pt')" aria-label="Mudar para Português">PT</button>
-            <button onclick="mudarIdioma('en')" aria-label="Switch to English">EN</button>
+            <button onclick="mudarIdioma('pt')">PT</button>
+            <button onclick="mudarIdioma('en')">EN</button>
         </div>
     </div>
 
@@ -201,14 +207,13 @@
     </header>
 
     <main>
-        <!-- Seção Sobre o Projeto -->
+        <!-- Seção Sobre -->
         <section id="sobre">
             <h2 id="txt-sobre-titulo">Sobre o Projeto</h2>
             <p id="txt-sobre-desc">A água é um recurso essencial, mas muitas vezes não percebemos a quantidade que desperdiçamos no dia a dia. O projeto <strong>Cálculo d'Água</strong> foi desenvolvido para ajudar famílias e escolas a monitorarem seus gastos hídricos, promovendo a conscientização e a economia financeira através de ferramentas práticas de medição.</p>
 
             <div class="imagem-container">
-                <!-- Substitua 'image.png' pelo caminho/nome real do seu arquivo de imagem -->
-                <img src="image.png" alt="Gotinha de água fofa usando óculos e resolvendo cálculos matemáticos complexos sobre o consumo de água" class="imagem-gotinha">
+                <img src="image.png" alt="Gotinha de água" class="imagem-gotinha">
             </div>
         </section>
 
@@ -243,10 +248,13 @@
             <p id="txt-equipe-desc">Somos um grupo de estudantes dedicados a criar soluções ecológicas e acessíveis para a nossa comunidade.</p>
             <p><strong id="txt-dev">Desenvolvido por:</strong> Kari Santos</p>
             
-            <!-- Botão de Curtir -->
-            <div class="curtir-container">
-                <button class="btn-curtir" id="btn-curtir" onclick="curtirPagina()" aria-label="Curtir o projeto">
-                    ❤️ <span id="txt-btn-curtir">Curtir Projeto</span> (<span id="contador-curtidas">0</span>)
+            <!-- Botões de Like e Dislike -->
+            <div class="feedback-container">
+                <button class="btn-feedback btn-like" onclick="darLike()">
+                    👍 <span id="txt-btn-like">Curtir</span> (<span id="contador-likes">0</span>)
+                </button>
+                <button class="btn-feedback btn-dislike" onclick="darDislike()">
+                    👎 <span id="txt-btn-dislike">Não Gostei</span> (<span id="contador-dislikes">0</span>)
                 </button>
             </div>
         </section>
@@ -257,28 +265,23 @@
         <p>&copy; 2026 - <span id="txt-footer-proj">Projeto Estudantil de Conscientização Hídrica</span></p>
     </footer>
 
-    <!-- Widget VLibras para Acessibilidade de Surdos -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <!-- Scripts de Interatividade e Idiomas -->
     <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/v2');
-    </script>
+        // Contadores de Feedback
+        let likes = 0;
+        let dislikes = 0;
 
-    <!-- Scripts do Botão de Curtir e Troca de Idiomas -->
-    <script>
-        // Função do Botão Curtir
-        let curtidas = 0;
-        function curtirPagina() {
-            curtidas++;
-            document.getElementById('contador-curtidas').innerText = curtidas;
+        function darLike() {
+            likes++;
+            document.getElementById('contador-likes').innerText = likes;
         }
 
-        // Dicionário de Idiomas (PT / EN)
+        function darDislike() {
+            dislikes++;
+            document.getElementById('contador-dislikes').innerText = dislikes;
+        }
+
+        // Dicionário Bilingue (PT / EN)
         const traducoes = {
             pt: {
                 navSobre: "Sobre",
@@ -300,7 +303,8 @@
                 equipeTitulo: "Quem Somos?",
                 equipeDesc: "Somos um grupo de estudantes dedicados a criar soluções ecológicas e acessíveis para a nossa comunidade.",
                 dev: "Desenvolvido por:",
-                btnCurtir: "Curtir Projeto",
+                btnLike: "Curtir",
+                btnDislike: "Não Gostei",
                 footerDireitos: "Todos os direitos reservados a @Kari-Santos66",
                 footerProj: "Projeto Estudantil de Conscientização Hídrica"
             },
@@ -324,13 +328,13 @@
                 equipeTitulo: "About Us",
                 equipeDesc: "We are a group of students dedicated to creating ecological and accessible solutions for our community.",
                 dev: "Developed by:",
-                btnCurtir: "Like Project",
+                btnLike: "Like",
+                btnDislike: "Dislike",
                 footerDireitos: "All rights reserved to @Kari-Santos66",
                 footerProj: "Student Project for Water Awareness"
             }
         };
 
-        // Função de Troca de Idioma
         function mudarIdioma(lang) {
             document.documentElement.lang = lang === 'pt' ? 'pt-br' : 'en';
             
@@ -357,7 +361,8 @@
             document.getElementById('txt-equipe-titulo').innerText = traducoes[lang].equipeTitulo;
             document.getElementById('txt-equipe-desc').innerText = traducoes[lang].equipeDesc;
             document.getElementById('txt-dev').innerText = traducoes[lang].dev;
-            document.getElementById('txt-btn-curtir').innerText = traducoes[lang].btnCurtir;
+            document.getElementById('txt-btn-like').innerText = traducoes[lang].btnLike;
+            document.getElementById('txt-btn-dislike').innerText = traducoes[lang].btnDislike;
 
             document.getElementById('txt-footer-direitos').innerText = traducoes[lang].footerDireitos;
             document.getElementById('txt-footer-proj').innerText = traducoes[lang].footerProj;
