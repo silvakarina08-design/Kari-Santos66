@@ -4,42 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cálculo d'Água - Consumo Consciente</title>
-   
+    
     <style>
-        /* Estilos Gerais */
+        /* Reset e Estilos Gerais */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.8;
             margin: 0;
             padding: 0;
             color: #333;
-            background-color: #f9f9f9;
+            background-color: #f4f7f6;
         }
 
-        /* Cabeçalho */
+        /* Barra de Navegação e Seletor de Idiomas */
+        .top-bar {
+            background-color: #06203d;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+
+        .top-bar nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 0.9em;
+            transition: color 0.2s;
+        }
+
+        .top-bar nav a:hover {
+            color: #ECD356;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid #ECD356;
+            color: #ECD356;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .lang-switch button:hover {
+            background-color: #ECD356;
+            color: #0A315B;
+        }
+
+        /* Cabeçalho Principal */
         header {
             background-color: #0A315B;
             color: #ECD356;
-            padding: 40px 20px;
+            padding: 40px 20px 60px 20px;
             text-align: center;
             border-bottom: 5px solid #ECD356;
         }
 
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { margin: 10px 0 0; font-size: 1.1em; opacity: 0.9; }
+        header h1 { 
+            margin: 0; 
+            font-size: 2.8em; 
+            letter-spacing: 1px;
+        }
+        
+        header p { 
+            margin: 10px 0 0; 
+            font-size: 1.2em; 
+            opacity: 0.95; 
+            color: #ffffff;
+        }
 
         /* Conteúdo Principal */
         main {
-            padding: 30px 20px;
+            padding: 40px 30px;
             max-width: 900px;
-            margin: 0 auto;
+            margin: -30px auto 40px auto;
             background-color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-radius: 8px;
-            margin-top: -20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-radius: 12px;
         }
 
-        /* Container da Imagem */
+        /* Container de Imagem */
         .imagem-container {
             text-align: center;
             margin: 30px 0;
@@ -47,95 +98,270 @@
 
         .imagem-gotinha {
             max-width: 280px;
+            width: 100%;
             height: auto;
             border-radius: 20px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
             border: 4px solid #fff;
         }
 
         /* Seções e Cards */
-        section { margin-bottom: 40px; }
-        h2 { color: #0A315B; border-bottom: 2px solid #ECD356; display: inline-block; padding-bottom: 5px; margin-bottom: 20px; }
+        section { 
+            margin-bottom: 45px; 
+            scroll-margin-top: 20px;
+        }
+        
+        h2 { 
+            color: #0A315B; 
+            border-bottom: 3px solid #ECD356; 
+            display: inline-block; 
+            padding-bottom: 5px; 
+            margin-bottom: 25px;
+            font-size: 1.6em;
+        }
 
         .card {
-            background-color: #f4f7f6;
+            background-color: #f8fafc;
             border-left: 5px solid #0A315B;
             padding: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-radius: 0 8px 8px 0;
-            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .card:hover { transform: translateX(5px); }
-        .card h3 { margin-top: 0; color: #0A315B; font-size: 1.2em; }
+
+        .card:hover { 
+            transform: translateX(5px); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 { 
+            margin-top: 0; 
+            color: #0A315B; 
+            font-size: 1.2em; 
+        }
+
+        /* Botão de Curtir */
+        .curtir-container {
+            text-align: center;
+            margin: 30px 0 10px 0;
+        }
+
+        .btn-curtir {
+            background-color: #ECD356;
+            color: #0A315B;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.05em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-curtir:hover {
+            transform: scale(1.05);
+            background-color: #e0c438;
+        }
 
         /* Rodapé */
         footer {
             background-color: #0A315B;
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 25px 20px;
             font-size: 0.9em;
-            margin-top: 50px;
-            border-top: 3px solid #ECD356;
+            border-top: 4px solid #ECD356;
         }
+
         footer p { margin: 5px 0; }
     </style>
 </head>
 <body>
 
+    <!-- Barra Superior com Navegação e Idiomas -->
+    <div class="top-bar">
+        <nav aria-label="Navegação Principal">
+            <a href="#sobre" id="nav-sobre">Sobre</a>
+            <a href="#faq" id="nav-faq">FAQ</a>
+            <a href="#equipe" id="nav-equipe">Quem Somos</a>
+        </nav>
+        
+        <!-- Seletor de Idioma -->
+        <div class="lang-switch">
+            <button onclick="mudarIdioma('pt')" aria-label="Mudar para Português">PT</button>
+            <button onclick="mudarIdioma('en')" aria-label="Switch to English">EN</button>
+        </div>
+    </div>
+
     <header>
-        <h1>Cálculo d'Água</h1>
-        <p>Aprenda a calcular e otimizar seu consumo diário de forma simples e sustentável.</p>
+        <h1 id="txt-titulo">Cálculo d'Água</h1>
+        <p id="txt-subtitulo">Aprenda a calcular e otimizar seu consumo diário de forma simples e sustentável.</p>
     </header>
 
     <main>
-        <section>
-            <h2>Sobre o Projeto</h2>
-            <p>A água é um recurso essencial, mas muitas vezes não percebemos a quantidade que desperdiçamos no dia a dia. O projeto <strong>Cálculo d'Água</strong> foi desenvolvido para ajudar famílias e escolas a monitorarem seus gastos hídricos, promovendo a conscientização e a economia financeira através de ferramentas práticas de medição.</p>
+        <!-- Seção Sobre o Projeto -->
+        <section id="sobre">
+            <h2 id="txt-sobre-titulo">Sobre o Projeto</h2>
+            <p id="txt-sobre-desc">A água é um recurso essencial, mas muitas vezes não percebemos a quantidade que desperdiçamos no dia a dia. O projeto <strong>Cálculo d'Água</strong> foi desenvolvido para ajudar famílias e escolas a monitorarem seus gastos hídricos, promovendo a conscientização e a economia financeira através de ferramentas práticas de medição.</p>
 
             <div class="imagem-container">
-                <!-- VVV IMPORTANTE: APAGUE 'image.png' ABAIXO E COLE O NOME COMPLICADO QUE VOCÊ COPIOU VVV -->
+                <!-- Substitua 'image.png' pelo caminho/nome real do seu arquivo de imagem -->
                 <img src="image.png" alt="Gotinha de água fofa usando óculos e resolvendo cálculos matemáticos complexos sobre o consumo de água" class="imagem-gotinha">
-                <!-- ^^^ IMPORTANTE: MANTENHA AS ASPAS ("...") AO REDOR DO NOME ^^^ -->
-            </div>
-
-        </section>
-
-        <section>
-            <h2>Perguntas Frequentes (FAQ)</h2>
-           
-            <div class="card">
-                <h3>1. Como é feito o cálculo do consumo diário?</h3>
-                <p>O cálculo leva em consideração a média de tempo gasta em atividades rotineiras multiplieda pelo fluxo médio de água das torneiras e chuveiros padrão.</p>
-            </div>
-
-            <div class="card">
-                <h3>2. Qual é a média de consumo recomendada por pessoa?</h3>
-                <p>Segundo a Organização Mundial da Saúde (OMS), 110 litros de água por dia são suficientes para atender às necessidades básicas de consumo e higiene de uma pessoa.</p>
-            </div>
-
-            <div class="card">
-                <h3>3. Como posso reduzir meu consumo sem mudar drasticamente a rotina?</h3>
-                <p>Pequenas atitudes geram grandes impactos: fechar a torneira ao escovar os dentes, reduzir o tempo de banho em 2 minutos e reutilizar a água da máquina de lavar para limpar áreas externas.</p>
-            </div>
-
-            <div class="card">
-                <h3>4. Como este site ajuda na prática?</h3>
-                <p>Nossa plataforma oferece calculatórias simplificadas e guias educativos para você identificar onde está o maior gasto de água.</p>
             </div>
         </section>
 
-        <section>
-            <h2>Quem Somos?</h2>
-            <p>Somos um grupo de estudantes dedicados a criar soluções ecológicas e acessíveis para a nossa comunidade.</p>
-            <p><strong>Desenvolvido por:</strong> Kari Santos</p>
+        <!-- Seção FAQ -->
+        <section id="faq">
+            <h2 id="txt-faq-titulo">Perguntas Frequentes (FAQ)</h2>
+            
+            <div class="card">
+                <h3 id="txt-q1">1. Como é feito o cálculo do consumo diário?</h3>
+                <p id="txt-a1">O cálculo leva em consideração a média de tempo gasta em atividades rotineiras multiplicada pelo fluxo médio de água das torneiras e chuveiros padrão.</p>
+            </div>
+
+            <div class="card">
+                <h3 id="txt-q2">2. Qual é a média de consumo recomendada por pessoa?</h3>
+                <p id="txt-a2">Segundo a Organização Mundial da Saúde (OMS), 110 litros de água por dia são suficientes para atender às necessidades básicas de consumo e higiene de uma pessoa.</p>
+            </div>
+
+            <div class="card">
+                <h3 id="txt-q3">3. Como posso reduzir meu consumo sem mudar drasticamente a rotina?</h3>
+                <p id="txt-a3">Pequenas atitudes geram grandes impactos: fechar a torneira ao escovar os dentes, reduzir o tempo de banho em 2 minutos e reutilizar a água da máquina de lavar para limpar áreas externas.</p>
+            </div>
+
+            <div class="card">
+                <h3 id="txt-q4">4. Como este site ajuda na prática?</h3>
+                <p id="txt-a4">Nossa plataforma oferece calculadoras simplificadas e guias educativos para você identificar onde está o maior gasto de água.</p>
+            </div>
+        </section>
+
+        <!-- Seção Quem Somos -->
+        <section id="equipe">
+            <h2 id="txt-equipe-titulo">Quem Somos?</h2>
+            <p id="txt-equipe-desc">Somos um grupo de estudantes dedicados a criar soluções ecológicas e acessíveis para a nossa comunidade.</p>
+            <p><strong id="txt-dev">Desenvolvido por:</strong> Kari Santos</p>
+            
+            <!-- Botão de Curtir -->
+            <div class="curtir-container">
+                <button class="btn-curtir" id="btn-curtir" onclick="curtirPagina()" aria-label="Curtir o projeto">
+                    ❤️ <span id="txt-btn-curtir">Curtir Projeto</span> (<span id="contador-curtidas">0</span>)
+                </button>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>Todos os direitos reservados a @Kari-Santos66</p>
-        <p>&copy; 2026 - Projeto Estudantil de Conscientização Hídrica</p>
+        <p id="txt-footer-direitos">Todos os direitos reservados a @Kari-Santos66</p>
+        <p>&copy; 2026 - <span id="txt-footer-proj">Projeto Estudantil de Conscientização Hídrica</span></p>
     </footer>
 
+    <!-- Widget VLibras para Acessibilidade de Surdos -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/v2');
+    </script>
+
+    <!-- Scripts do Botão de Curtir e Troca de Idiomas -->
+    <script>
+        // Função do Botão Curtir
+        let curtidas = 0;
+        function curtirPagina() {
+            curtidas++;
+            document.getElementById('contador-curtidas').innerText = curtidas;
+        }
+
+        // Dicionário de Idiomas (PT / EN)
+        const traducoes = {
+            pt: {
+                navSobre: "Sobre",
+                navFaq: "FAQ",
+                navEquipe: "Quem Somos",
+                titulo: "Cálculo d'Água",
+                subtitulo: "Aprenda a calcular e otimizar seu consumo diário de forma simples e sustentável.",
+                sobreTitulo: "Sobre o Projeto",
+                sobreDesc: "A água é um recurso essencial, mas muitas vezes não percebemos a quantidade que desperdiçamos no dia a dia. O projeto <strong>Cálculo d'Água</strong> foi desenvolvido para ajudar famílias e escolas a monitorarem seus gastos hídricos, promovendo a conscientização e a economia financeira através de ferramentas práticas de medição.",
+                faqTitulo: "Perguntas Frequentes (FAQ)",
+                q1: "1. Como é feito o cálculo do consumo diário?",
+                a1: "O cálculo leva em consideração a média de tempo gasta em atividades rotineiras multiplicada pelo fluxo médio de água das torneiras e chuveiros padrão.",
+                q2: "2. Qual é a média de consumo recomendada por pessoa?",
+                a2: "Segundo a Organização Mundial da Saúde (OMS), 110 litros de água por dia são suficientes para atender às necessidades básicas de consumo e higiene de uma pessoa.",
+                q3: "3. Como posso reduzir meu consumo sem mudar drasticamente a rotina?",
+                a3: "Pequenas atitudes geram grandes impactos: fechar a torneira ao escovar os dentes, reduzir o tempo de banho em 2 minutos e reutilizar a água da máquina de lavar para limpar áreas externas.",
+                q4: "4. Como este site ajuda na prática?",
+                a4: "Nossa plataforma oferece calculadoras simplificadas e guias educativos para você identificar onde está o maior gasto de água.",
+                equipeTitulo: "Quem Somos?",
+                equipeDesc: "Somos um grupo de estudantes dedicados a criar soluções ecológicas e acessíveis para a nossa comunidade.",
+                dev: "Desenvolvido por:",
+                btnCurtir: "Curtir Projeto",
+                footerDireitos: "Todos os direitos reservados a @Kari-Santos66",
+                footerProj: "Projeto Estudantil de Conscientização Hídrica"
+            },
+            en: {
+                navSobre: "About",
+                navFaq: "FAQ",
+                navEquipe: "About Us",
+                titulo: "Water Calculation",
+                subtitulo: "Learn how to calculate and optimize your daily water consumption simply and sustainably.",
+                sobreTitulo: "About the Project",
+                sobreDesc: "Water is an essential resource, but we often don't realize how much we waste daily. The <strong>Water Calculation</strong> project was created to help families and schools monitor their water usage, promoting awareness and savings through practical measurement tools.",
+                faqTitulo: "Frequently Asked Questions (FAQ)",
+                q1: "1. How is daily consumption calculated?",
+                a1: "The calculation considers the average time spent on daily routines multiplied by the average water flow of standard faucets and showers.",
+                q2: "2. What is the recommended average consumption per person?",
+                a2: "According to the World Health Organization (WHO), 110 liters of water per day are enough to meet a person's basic consumption and hygiene needs.",
+                q3: "3. How can I reduce consumption without drastically changing my routine?",
+                a3: "Small actions make a big impact: turning off the tap while brushing teeth, shortening showers by 2 minutes, and reusing washing machine water for outdoor areas.",
+                q4: "4. How does this website help in practice?",
+                a4: "Our platform offers simplified calculators and educational guides to help you identify where water is being wasted the most.",
+                equipeTitulo: "About Us",
+                equipeDesc: "We are a group of students dedicated to creating ecological and accessible solutions for our community.",
+                dev: "Developed by:",
+                btnCurtir: "Like Project",
+                footerDireitos: "All rights reserved to @Kari-Santos66",
+                footerProj: "Student Project for Water Awareness"
+            }
+        };
+
+        // Função de Troca de Idioma
+        function mudarIdioma(lang) {
+            document.documentElement.lang = lang === 'pt' ? 'pt-br' : 'en';
+            
+            document.getElementById('nav-sobre').innerText = traducoes[lang].navSobre;
+            document.getElementById('nav-faq').innerText = traducoes[lang].navFaq;
+            document.getElementById('nav-equipe').innerText = traducoes[lang].navEquipe;
+
+            document.getElementById('txt-titulo').innerText = traducoes[lang].titulo;
+            document.getElementById('txt-subtitulo').innerText = traducoes[lang].subtitulo;
+            
+            document.getElementById('txt-sobre-titulo').innerText = traducoes[lang].sobreTitulo;
+            document.getElementById('txt-sobre-desc').innerHTML = traducoes[lang].sobreDesc;
+            
+            document.getElementById('txt-faq-titulo').innerText = traducoes[lang].faqTitulo;
+            document.getElementById('txt-q1').innerText = traducoes[lang].q1;
+            document.getElementById('txt-a1').innerText = traducoes[lang].a1;
+            document.getElementById('txt-q2').innerText = traducoes[lang].q2;
+            document.getElementById('txt-a2').innerText = traducoes[lang].a2;
+            document.getElementById('txt-q3').innerText = traducoes[lang].q3;
+            document.getElementById('txt-a3').innerText = traducoes[lang].a3;
+            document.getElementById('txt-q4').innerText = traducoes[lang].q4;
+            document.getElementById('txt-a4').innerText = traducoes[lang].a4;
+
+            document.getElementById('txt-equipe-titulo').innerText = traducoes[lang].equipeTitulo;
+            document.getElementById('txt-equipe-desc').innerText = traducoes[lang].equipeDesc;
+            document.getElementById('txt-dev').innerText = traducoes[lang].dev;
+            document.getElementById('txt-btn-curtir').innerText = traducoes[lang].btnCurtir;
+
+            document.getElementById('txt-footer-direitos').innerText = traducoes[lang].footerDireitos;
+            document.getElementById('txt-footer-proj').innerText = traducoes[lang].footerProj;
+        }
+    </script>
 </body>
-</html
+</html>
